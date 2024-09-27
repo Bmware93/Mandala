@@ -22,10 +22,9 @@ struct ContentView: View {
             }
             
             ForEach(allEntries) { entry in
-                Text(entry.mood.rawValue)
+                EntryRowView(entry: entry)
             }
             .onDelete(perform: delete(at:))
-            
         }
     
     }
