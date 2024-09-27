@@ -12,9 +12,11 @@ struct ContentView: View {
     var body: some View {
         List {
             Menu {
-                Button("Angry") {}
-                Button("Sad") {}
-                Button("Fearful") {}
+                ForEach(Mood.allCases, id: \.self) { mood in
+                    Button(mood.rawValue) {
+                        
+                    }
+                }
             } label: {
                 Label("New Entry", systemImage: "plus")
             }
