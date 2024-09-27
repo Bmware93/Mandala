@@ -22,7 +22,14 @@ struct ContentView: View {
             }
             
             ForEach(allEntries) { entry in
-                Text(entry.mood.rawValue)
+                VStack(alignment: .leading) {
+                    Text(entry.mood.rawValue)
+                        .font(.headline)
+                    
+                    Text("on \(entry.timestamp, style: .date)")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
             }
             .onDelete(perform: delete(at:))
             
