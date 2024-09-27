@@ -17,4 +17,3 @@ enum Mood: String, CaseIterable {
     case disgust
 }
 
-

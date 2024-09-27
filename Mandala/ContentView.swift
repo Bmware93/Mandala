@@ -25,7 +25,6 @@ struct ContentView: View {
                 EntryRowView(entry: entry)
             }
             .onDelete(perform: delete(at:))
-            
         }
     
     }
