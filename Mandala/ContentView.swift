@@ -11,6 +11,14 @@ struct ContentView: View {
     @State var allEntries = [Entry]()
     var body: some View {
         List {
+            Menu {
+                Button("Angry") {}
+                Button("Sad") {}
+                Button("Fearful") {}
+            } label: {
+                Label("New Entry", systemImage: "plus")
+            }
+            
             ForEach(allEntries) { entry in
                 Text(entry.mood.rawValue)
             }
