@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Entry: Identifiable {
+    var mood: Mood
+    var timestamp = Date()
+    var id = UUID()
+}

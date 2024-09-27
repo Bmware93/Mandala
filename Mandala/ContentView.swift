@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var allEntries = [Entry]()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List {
+            ForEach(allEntries) { entry in
+                Text(entry.mood.rawValue)
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(allEntries: [
+        Entry(mood: .anger),
+        Entry(mood: .fear),
+        Entry(mood: .surprise)
+    ])
 }
