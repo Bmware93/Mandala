@@ -14,7 +14,7 @@ struct ContentView: View {
             Menu {
                 ForEach(Mood.allCases, id: \.self) { mood in
                     Button(mood.rawValue) {
-                        
+                        addEntry(mood: mood)
                     }
                 }
             } label: {
@@ -24,6 +24,19 @@ struct ContentView: View {
             ForEach(allEntries) { entry in
                 Text(entry.mood.rawValue)
             }
+            .onDelete(perform: delete(at:))
+            
+        }
+    
+    }
+    func delete(at offsets: IndexSet) {
+        allEntries.remove(atOffsets: offsets)
+    }
+    
+    func addEntry(mood: Mood) {
+        withAnimation {
+            let entry = Entry(mood: mood)
+            allEntries.insert(entry, at: 0)
         }
     }
 }
