@@ -30,14 +30,41 @@ struct EntryRowView: View {
         
         }
     }
+    
+    var emoji: String {
+        switch entry.mood {
+            case .anger:
+            return "😡"
+        case .anticipation:
+            return "👀"
+        case .joy:
+            return "😊"
+        case .trust:
+            return "💙"
+        case .fear:
+            return "😱"
+        case .surprise:
+            return "😯"
+        case .sadness:
+            return "😢"
+        case .disgust:
+            return "🤢"
+        }
+    }
     var body: some View {
-        VStack(alignment: .leading) {
-            longName
-                .font(.headline)
-            
-            Text("on \(entry.timestamp, style: .date)")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+        HStack {
+            Text(verbatim: emoji)
+                .font(.system(size: 36))
+                .padding(10)
+                    
+            VStack(alignment: .leading) {
+                longName
+                    .font(.headline)
+                
+                Text("on \(entry.timestamp, style: .date)")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
         }
     }
 }
