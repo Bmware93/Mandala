@@ -56,6 +56,7 @@ struct EntryRowView: View {
             Text(verbatim: emoji)
                 .font(.system(size: 36))
                 .padding(10)
+                .background(MoodView(mood: entry.mood))
                     
             VStack(alignment: .leading) {
                 longName
@@ -66,6 +67,7 @@ struct EntryRowView: View {
                     .foregroundStyle(.secondary)
             }
         }
+        .padding(.vertical)
     }
 }
 
