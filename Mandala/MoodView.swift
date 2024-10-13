@@ -13,7 +13,7 @@ struct MoodView: View {
         startPoint: .top,
         endPoint: .bottom)
     var body: some View {
-        Color(mood.rawValue)
+        mood.color
             .aspectRatio(contentMode:.fit)
             .overlay(overlayGradient)
             .clipShape(Circle())
