@@ -13,8 +13,10 @@ struct ContentView: View {
         List {
             Menu {
                 ForEach(Mood.allCases, id: \.self) { mood in
-                    Button(mood.rawValue) {
+                    Button {
                         addEntry(mood: mood)
+                    } label: {
+                        mood.shortName
                     }
                 }
             } label: {
@@ -42,8 +44,8 @@ struct ContentView: View {
 
 #Preview {
     ContentView(allEntries: [
-        Entry(mood: .anger),
-        Entry(mood: .fear),
-        Entry(mood: .surprise)
+        Entry(mood: .getRandomMood()),
+        Entry(mood: .getRandomMood()),
+        Entry(mood: .getRandomMood())
     ])
 }

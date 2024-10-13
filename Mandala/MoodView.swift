@@ -13,7 +13,7 @@ struct MoodView: View {
         startPoint: .top,
         endPoint: .bottom)
     var body: some View {
-        Color(mood.rawValue)
+        mood.color
             .aspectRatio(contentMode:.fit)
             .overlay(overlayGradient)
             .clipShape(Circle())
@@ -21,7 +21,8 @@ struct MoodView: View {
 }
 
 #Preview {
-    MoodView(mood: .sadness)
-        .padding()
-        //.previewLayout(.fixed(width: 100, height: 100))
+    let moods: [Mood] = [.anger,.anticipation,.disgust,.fear,.joy,.sadness]
+    ForEach(moods, id: \.self) { mood in
+        MoodView(mood: mood)
+    }
 }
