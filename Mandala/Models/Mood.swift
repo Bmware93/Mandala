@@ -15,5 +15,9 @@ enum Mood: String, CaseIterable {
     case surprise
     case sadness
     case disgust
+    
+    static func getRandomMood() -> Mood {
+        Mood.allCases.randomElement()!
+    }
 }
 
