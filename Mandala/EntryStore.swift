@@ -7,14 +7,14 @@
 
 import Foundation
 
-class EntryStore {
-    var allEntries = [Entry]()
+class EntryStore:ObservableObject {
+    @Published var allEntries = [Entry]()
     
     init(entries: [Entry]) {
         allEntries = entries
     }
     
-    init(){
+    init() {
         load()
     }
     
