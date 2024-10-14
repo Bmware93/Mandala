@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MandalaApp: App {
+    @StateObject var entryStore: EntryStore = .init()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(entryStore)
         }
     }
 }
