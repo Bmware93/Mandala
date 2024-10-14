@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var store: EntryStore
+    @Environment(\.scenePhase) var scenePhase
     var body: some View {
         EntryListView()
+            .onChange(of: scenePhase) {
+                if scenePhase == .background {
+                    store.save()
+                }
+            }
     }
 }
 
