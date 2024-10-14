@@ -24,5 +24,10 @@ struct MoodView: View {
     let moods: [Mood] = [.anger,.anticipation,.disgust,.fear,.joy,.sadness]
     ForEach(moods, id: \.self) { mood in
         MoodView(mood: mood)
+            .overlay {
+                Text(mood.rawValue.capitalized)
+                    .font(.caption)
+                    .bold()
+            }
     }
 }

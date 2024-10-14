@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State var allEntries = [Entry]()
+struct EntryListView: View {
+    @EnvironmentObject var store: EntryStore
     var body: some View {
         List {
             Menu {
@@ -23,7 +23,7 @@ struct ContentView: View {
                 Label("New Entry", systemImage: "plus")
             }
             
-            ForEach(allEntries) { entry in
+            ForEach(store.allEntries) { entry in
                 EntryRowView(entry: entry)
             }
             .onDelete(perform: delete(at:))
@@ -31,21 +31,19 @@ struct ContentView: View {
     
     }
     func delete(at offsets: IndexSet) {
-        allEntries.remove(atOffsets: offsets)
+        store.allEntries.remove(atOffsets: offsets)
     }
     
     func addEntry(mood: Mood) {
         withAnimation {
             let entry = Entry(mood: mood)
-            allEntries.insert(entry, at: 0)
+            store.allEntries.insert(entry, at: 0)
         }
     }
 }
 
 #Preview {
-    ContentView(allEntries: [
-        Entry(mood: .getRandomMood()),
-        Entry(mood: .getRandomMood()),
-        Entry(mood: .getRandomMood())
-    ])
+    let store = EntryStore(entries: [Entry(mood: .getRandomMood()), Entry(mood: .getRandomMood()), Entry(mood: .getRandomMood())])
+    EntryListView()
+        .environmentObject(store)
 }
