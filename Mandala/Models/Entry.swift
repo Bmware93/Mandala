@@ -25,6 +25,14 @@ extension Entry: Codable {
         try container.encode(timestamp, forKey: .timestamp)
         try container.encode(id, forKey: .id)
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        mood = try container.decode(Mood.self, forKey: .mood)
+        timestamp = try container.decode(Date.self, forKey: .timestamp)
+        id = try container.decode(UUID.self, forKey: .id)
+    }
 }
 
 
