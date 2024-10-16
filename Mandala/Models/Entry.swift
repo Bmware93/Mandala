@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Entry: Identifiable {
+struct Entry: Identifiable, Hashable {
     var mood: Mood
     var timestamp = Date()
     var id = UUID()

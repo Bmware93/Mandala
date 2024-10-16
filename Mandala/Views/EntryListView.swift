@@ -11,6 +11,17 @@ struct EntryListView: View {
     @EnvironmentObject var store: EntryStore
     var body: some View {
         List {
+            ForEach(store.allEntries) { entry in
+                NavigationLink(value: entry) {
+                    EntryRowView(entry: entry)
+                }
+            }
+            .onDelete(perform: delete(at:))
+        }
+        .navigationDestination(for: Entry.self) { entry in
+            entry.mood.longName
+        }
+        .toolbar {
             Menu {
                 ForEach(Mood.allCases, id: \.self) { mood in
                     Button {
@@ -22,14 +33,10 @@ struct EntryListView: View {
             } label: {
                 Label("New Entry", systemImage: "plus")
             }
-            
-            ForEach(store.allEntries) { entry in
-                EntryRowView(entry: entry)
-            }
-            .onDelete(perform: delete(at:))
         }
     
     }
+    
     func delete(at offsets: IndexSet) {
         store.allEntries.remove(atOffsets: offsets)
     }
@@ -44,6 +51,8 @@ struct EntryListView: View {
 
 #Preview {
     let store = EntryStore(entries: [Entry(mood: .getRandomMood()), Entry(mood: .getRandomMood()), Entry(mood: .getRandomMood())])
-    EntryListView()
-        .environmentObject(store)
+    NavigationStack {
+        EntryListView()
+            .environmentObject(store)
+    }
 }
