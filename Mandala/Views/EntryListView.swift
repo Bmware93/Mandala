@@ -24,9 +24,14 @@ struct EntryListView: View {
             }
             
             ForEach(store.allEntries) { entry in
-                EntryRowView(entry: entry)
+                NavigationLink(value: entry) {
+                    EntryRowView(entry: entry)
+                }
             }
             .onDelete(perform: delete(at:))
+        }
+        .navigationDestination(for: Entry.self) { entry in
+            entry.mood.longName
         }
     
     }

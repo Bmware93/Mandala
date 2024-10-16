@@ -13,6 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             EntryListView()
+                .navigationTitle("Mandala")
         }
                 .onChange(of: scenePhase) {
                     if scenePhase == .background {
