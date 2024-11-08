@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EntryDetailView: View {
+    @EnvironmentObject var store: EntryStore
     @State var entry: Entry
     
     var body: some View {
@@ -31,13 +32,18 @@ struct EntryDetailView: View {
         }
         .navigationTitle("Entry")
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            store.update(entry)
+        }
     }
            
 }
 
 #Preview {
     let entry = Entry(mood: .joy)
+    let store = EntryStore(entries: [entry])
     let detail = EntryDetailView(entry: entry)
+        .environmentObject(store)
     NavigationStack {
         detail
     }
