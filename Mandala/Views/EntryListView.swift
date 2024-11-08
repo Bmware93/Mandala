@@ -19,7 +19,7 @@ struct EntryListView: View {
             .onDelete(perform: delete(at:))
         }
         .navigationDestination(for: Entry.self) { entry in
-            entry.mood.longName
+            EntryDetailView(entry: entry)
         }
         .toolbar {
             Menu {
