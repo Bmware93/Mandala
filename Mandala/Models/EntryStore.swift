@@ -46,6 +46,17 @@ class EntryStore:ObservableObject {
         }
         
     }
+    
+    func update(_ entry: Entry) {
+        guard let index = indexForEntry(with: entry.id)
+        else { return }
+        allEntries[index] = entry
+    }
+    
+    func indexForEntry(with id: Entry.ID) -> Int? {
+        allEntries.firstIndex { $0.id == id}
+    }
+    
     func archiveURL() throws -> URL {
         let documentsDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         return documentsDirectory.appendingPathComponent("entries", conformingTo: .propertyList)

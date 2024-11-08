@@ -17,7 +17,7 @@ struct EntryRowView: View {
                 .background(MoodView(mood: entry.mood))
                     
             VStack(alignment: .leading) {
-                entry.mood.longName
+                summary
                     .font(.headline)
                 
                 Text("on \(entry.timestamp, style: .date)")
@@ -26,6 +26,9 @@ struct EntryRowView: View {
             }
         }
         .padding(.vertical)
+    }
+    var summary: Text {
+        entry.summary.isEmpty ? entry.mood.longName : Text(entry.summary)
     }
 }
 
