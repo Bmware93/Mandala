@@ -12,11 +12,21 @@ struct EntryDetailView: View {
     
     var body: some View {
         Form {
-            DatePicker("Date", selection: $entry.timestamp)
+            Picker("Mood", selection: $entry.mood) {
+                ForEach(Mood.allCases, id: \.self) { mood in
+                    mood.shortName
+                        .tag(mood)
+                }
+            }
+            
+            Section {
+                DatePicker("Date", selection: $entry.timestamp)
+            }
         }
         .navigationTitle("Entry")
+        .navigationBarTitleDisplayMode(.inline)
     }
-       
+           
 }
 
 #Preview {
