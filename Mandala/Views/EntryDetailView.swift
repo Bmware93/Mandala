@@ -17,10 +17,16 @@ struct EntryDetailView: View {
                     mood.shortName
                         .tag(mood)
                 }
+                
+            }
+           
+            Section {
+                TextField("Summary", text: $entry.summary)
+                DatePicker("Date", selection: $entry.timestamp)
             }
             
-            Section {
-                DatePicker("Date", selection: $entry.timestamp)
+            Section(header: Text("Additional Details")) {
+                TextEditor(text: $entry.details)
             }
         }
         .navigationTitle("Entry")

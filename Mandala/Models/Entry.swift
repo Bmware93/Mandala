@@ -10,6 +10,8 @@ import Foundation
 struct Entry: Identifiable, Hashable {
     var mood: Mood
     var timestamp = Date()
+    var summary: String = ""
+    var details: String = ""
     var id = UUID()
 }
 
